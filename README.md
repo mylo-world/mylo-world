@@ -2,7 +2,7 @@
 - 👀 I’m interested in art
 - 🌱 I’m currently learning python and java
 - 💞️ I’m looking to collaborate on study
-- 📫 How to reach me contact me here
+- 📫 mahesamylo@gmail.com
 - 😄 Pronouns: female
 - ⚡ Fun fact: i love to romanticize everything
 
