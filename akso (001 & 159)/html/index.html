@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to My Project</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background: #007bff;
+      color: white;
+      height: 50vh; /* Menambah tinggi secara eksplisit */
+      text-align: center;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .header .icon {
+      position: absolute;
+      font-size: 5rem;
+      color: white;
+    }
+
+    .header .icon-left {
+      left: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .header .icon-right {
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: center;
+      max-width: 800px;
+      color: #333;
+    }
+
+    .group {
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #ddd;
+      font-size: 1rem;
+    }
+
+    .group h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .group ul {
+      list-style-type: none;
+    }
+
+    .group ul li {
+      margin: 5px 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Welcome to My Project!</h1>
+      <h1></h1>
+      <p>
+        This project is part of the Final Project of the Computer Architecture and Operating System course. In this project, we use the Docker platform to create a virtual infrastructure consisting of several services.
+      </p>
+      <i class="fas fa-laptop icon icon-left"></i>
+      <i class="fab fa-docker icon icon-right"></i>
+    </div>
+    <div class="content">
+      <p>
+        The goal of this project is to understand and apply container technology, as well as integrate several system components using Docker Compose.
+      </p>
+    </div>
+    <div class="group">
+      <h2>- Group Members -</h2>
+      <ul>
+        <li>Daffa Ahmad Pangreksa / 2024-A / 24031554159</li>
+        <li>Mylovia Mahesa Ayu / 2024-A / 24031554001</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
