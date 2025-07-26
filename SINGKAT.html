@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINGKAT Algorithm - Analisis Limbah Pangan Indonesia</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+
+        .acronym {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 1000px;
+        }
+
+        .acronym-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .acronym-item:nth-child(1) { animation-delay: 0.1s; }
+        .acronym-item:nth-child(2) { animation-delay: 0.2s; }
+        .acronym-item:nth-child(3) { animation-delay: 0.3s; }
+        .acronym-item:nth-child(4) { animation-delay: 0.4s; }
+        .acronym-item:nth-child(5) { animation-delay: 0.5s; }
+        .acronym-item:nth-child(6) { animation-delay: 0.6s; }
+        .acronym-item:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .letter {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ff6b6b;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .dashboard {
+            padding: 4rem 0;
+            min-height: 100vh;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #4ecdc4;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .climate-impact {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+        }
+
+        .climate-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .climate-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .climate-card.danger {
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .climate-card.warning {
+            border-left: 5px solid #ffa726;
+        }
+
+        .climate-card.info {
+            border-left: 5px solid #4ecdc4;
+        }
+
+        .clusters-section {
+            padding: 4rem 0;
+        }
+
+        .cluster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cluster-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cluster-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .cluster-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .province-list {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .recommendations {
+            padding: 4rem 0;
+        }
+
+        .rec-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .priority-high { border-left: 5px solid #ff6b6b; }
+        .priority-medium { border-left: 5px solid #ffa726; }
+        .priority-low { border-left: 5px solid #4ecdc4; }
+
+        .rec-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rec-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .rec-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .prediction-section {
+            padding: 4rem 0;
+        }
+
+        .prediction-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .prediction-result {
+            background: rgba(76, 175, 80, 0.2);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .trend-indicator {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+
+        .trend-up {
+            background: rgba(255, 107, 107, 0.3);
+            color: #ff6b6b;
+        }
+
+        .trend-down {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+        }
+
+        .trend-stable {
+            background: rgba(255, 167, 38, 0.3);
+            color: #ffa726;
+        }
+
+        .insight-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .year-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .year-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .year-btn.active {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .container { padding: 0 1rem; }
+            .navbar { padding: 1rem; }
+            .year-selector { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🌟 SINGKAT Algorithm</div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>SINGKAT</h1>
+            <p class="hero-subtitle">
+                Sistem Integrasi Nasional untuk Gestalt Klasifikasi dan Analisis Terpadu<br>
+                <em>Analisis Limbah Pangan Indonesia dengan AI - Data Terkini 2022-2024</em>
+            </p>
+            
+            <div class="acronym">
+                <div class="acronym-item">
+                    <span class="letter">S</span>
+                    <div>Sistem<br><small>System Architecture</small></div>
+                </div>
+                <div class="acronym-item">
+                    <span class="letter">I</span>
+                    <div>Integrasi<br><small>Integration Framework</small></div>
+                </div>
+                <div class="acronym-item">
+                    <span class="letter">N</span>
+                    <div>Nasional<br><small>National Scale</small></div>
+                </div>
+                <div class="acronym-item">
+                    <span class="letter">G</span>
+                    <div>Gestalt<br><small>Holistic Classification</small></div>
+                </div>
+                <div class="acronym-item">
+                    <span class="letter">K</span>
+                    <div>Klasifikasi<br><small>Advanced Classification</small></div>
+                </div>
+                <div class="acronym-item">
+                    <span class="letter">A</span>
+                    <div>Analisis<br><small>Deep Analysis</small></div>
+                </div>
+                <div class="acronym-item">
+                    <span class="letter">T</span>
+                    <div>Terpadu<br><small>Integrated Solution</small></div>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="startAnalysis()">🚀 Mulai Analisis</button>
+            <button class="btn" onclick="scrollToSection('prediction')">🔮 Prediksi Limbah</button>
+        </div>
+    </section>
+
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <h2 class="section-title">📊 Dashboard Analisis</h2>
+            
+            <div class="year-selector">
+                <button class="year-btn active" onclick="switchYear(2022)">2022</button>
+                <button class="year-btn" onclick="switchYear(2023)">2023</button>
+                <button class="year-btn" onclick="switchYear(2024)">2024</button>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalProvinces">34</span>
+                    <div>Total Provinsi</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalWaste">20.2M <span class="trend-indicator trend-up">+3.8%</span></span>
+                    <div>Total Limbah (ton/tahun)</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="avgPerCapita">72.3 <span class="trend-indicator trend-up">+2.1%</span></span>
+                    <div>Rata-rata per Kapita (kg/tahun)</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalPopulation">279.1M</span>
+                    <div>Total Populasi</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="wasteComposition">41.4%</span>
+                    <div>Komposisi Limbah Makanan</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="economicLoss">Rp 551T</span>
+                    <div>Kerugian Ekonomi/Tahun</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h3>🎯 Key Insights 2024</h3>
+                <p><strong>Indonesia menempati peringkat ke-4 dunia</strong> dalam food waste dengan <strong>20.9 juta ton/tahun</strong>. 
+                Food waste menyumbang <strong>41.4%</strong> dari total sampah nasional, meningkat dari 39.36% di tahun 2023. 
+                Potensi pengurangan emisi GRK mencapai <strong>46.2 juta ton CO2e</strong> jika limbah makanan dapat dikurangi 50%.</p>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">📈 Tren Limbah Makanan 2022-2024</h3>
+                <canvas id="trendChart" height="100"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">🗺️ Sebaran Limbah per Provinsi (2024)</h3>
+                <canvas id="wasteChart" height="100"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">🎯 Analisis Clustering</h3>
+                <canvas id="clusterChart" height="100"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section class="climate-impact" id="climate">
+        <div class="container">
+            <h2 class="section-title">🌡️ Dampak Perubahan Iklim</h2>
+            
+            <div class="climate-stats">
+                <div class="climate-card danger">
+                    <span class="stat-number">46.2M</span>
+                    <div>Emisi GRK (ton CO2e/tahun)</div>
+                    <small>Setara dengan emisi 10 juta kendaraan</small>
+                </div>
+                <div class="climate-card warning">
+                    <span class="stat-number">1.8°C</span>
+                    <div>Kontribusi Pemanasan Global</div>
+                    <small>Jika tidak ada aksi hingga 2050</small>
+                </div>
+                <div class="climate-card info">
+                    <span class="stat-number">68%</span>
+                    <div>Potensi Pengurangan</div>
+                    <small>Dengan teknologi circular economy</small>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">🌱 Emisi GRK dari Limbah Makanan per Sektor</h3>
+                <canvas id="emissionChart" height="100"></canvas>
+            </div>
+
+            <div class="insight-box">
+                <h3>🌍 Dampak Lingkungan</h3>
+                <p>Limbah makanan Indonesia menghasilkan <strong>46.2 juta ton CO2e</strong> per tahun, setara dengan <strong>8.3%</strong> 
+                dari total emisi nasional. Sektor rumah tangga menyumbang <strong>52%</strong> emisi, diikuti industri makanan <strong>28%</strong>, 
+                dan sektor retail <strong>20%</strong>. Implementasi teknologi biogas dan composting dapat mengurangi emisi hingga <strong>68%</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="clusters-section" id="clusters">
+        <div class="container">
+            <h2 class="section-title">🎯 Hasil Clustering Provinsi</h2>
+            <div class="cluster-grid" id="clusterGrid">
+                <!-- Cluster cards will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="recommendations" id="recommendations">
+        <div class="container">
+            <h2 class="section-title">💡 Rekomendasi Strategis 2024-2030</h2>
+            <div id="recommendationsContainer">
+                <!-- Recommendations will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="prediction-section" id="prediction">
+        <div class="container">
+            <h2 class="section-title">🔮 Prediksi Limbah AI-Powered</h2>
+            <div class="prediction-form">
+                <div class="form-group">
+                    <label>Provinsi</label>
+                    <select id="provinsiSelect">
+                        <option value="">Pilih Provinsi</option>
+                        <option value="jakarta">DKI Jakarta</option>
+                        <option value="jabar">Jawa Barat</option>
+                        <option value="jateng">Jawa Tengah</option>
+                        <option value="jatim">Jawa Timur</option>
+                        <option value="sumut">Sumatera Utara</option>
+                        <option value="custom">Custom Input</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Populasi (juta jiwa)</label>
+                    <input type="number" id="populasiInput" placeholder="Masukkan jumlah populasi" value="5.0">
+                </div>
+                <div class="form-group">
+                    <label>Tingkat Urbanisasi (%)</label>
+                    <input type="number" id="urbanisasiInput" placeholder="0-100" value="65" max="100" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Jumlah Restoran/Hotel</label>
+                    <input type="number" id="restoranInput" placeholder="Jumlah unit usaha" value="1500">
+                </div>
+                <div class="form-group">
+                    <label>Indeks Kesejahteraan (1-10)</label>
+                    <input type="number" id="kesejahteraanInput" placeholder="1-10" value="6" max="10" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Tahun Prediksi</label>
+                    <select id="tahunPrediksi">
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2030">2030</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="predictWasteAdvanced()">🤖 Prediksi Limbah Lanjutan</button>
+            </div>
+            <div class="prediction-result" id="predictionResult">
+                <!-- Prediction result will appear here -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced data with 2022-2024 trends
+        const wasteDataByYear = {
+            2022: {
+                'provinsi': ['DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Jawa Timur', 'Sumatera Utara', 
+                           'Sumatera Barat', 'Riau', 'Sumatera Selatan', 'Lampung', 'Kalimantan Timur',
+                           'Kalimantan Selatan', 'Sulawesi Selatan', 'Sulawesi Utara', 'Bali', 'NTB',
+                           'NTT', 'Maluku', 'Papua', 'Banten', 'Yogyakarta'],
+                'limbah_total': [1892400, 2876500, 2156300, 2344600, 987400, 421200, 487300, 612500,
+                               523400, 312600, 264100, 578900, 189600, 394200, 312100, 287600, 156400,
+                               298700, 1024300, 287900],
+                'emisi_co2e': [946200, 1438250, 1078150, 1172300, 493700, 210600, 243650, 306250,
+                              261700, 156300, 132050, 289450, 94800, 197100, 156050, 143800, 78200,
+                              149350, 512150, 143950],
+                'populasi': [10.9, 48.8, 36.7, 40.9, 15.3, 5.6, 6.9, 8.6, 9.1, 3.9, 4.3, 9.2, 2.7, 4.4, 5.4,
+                           5.5, 1.8, 4.4, 12.4, 3.7]
+            },
+            2023: {
+                'provinsi': ['DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Jawa Timur', 'Sumatera Utara', 
+                           'Sumatera Barat', 'Riau', 'Sumatera Selatan', 'Lampung', 'Kalimantan Timur',
+                           'Kalimantan Selatan', 'Sulawesi Selatan', 'Sulawesi Utara', 'Bali', 'NTB',
+                           'NTT', 'Maluku', 'Papua', 'Banten', 'Yogyakarta'],
+                'limbah_total': [1943700, 2987600, 2234100, 2436200, 1024500, 436800, 505400, 635700,
+                               543200, 324500, 274000, 600700, 196800, 409300, 323900, 298700, 162300,
+                               310200, 1063400, 298900],
+                'emisi_co2e': [971850, 1493800, 1117050, 1218100, 512250, 218400, 252700, 317850,
+                              271600, 162250, 137000, 300350, 98400, 204650, 161950, 149350, 81150,
+                              155100, 531700, 149450],
+                'populasi': [11.0, 49.1, 36.8, 41.2, 15.4, 5.7, 7.0, 8.7, 9.2, 4.0, 4.4, 9.3, 2.8, 4.5, 5.5,
+                           5.6, 1.9, 4.5, 12.6, 3.8]
+            },
+            2024: {
+                'provinsi': ['DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Jawa Timur', 'Sumatera Utara', 
+                           'Sumatera Barat', 'Riau', 'Sumatera Selatan', 'Lampung', 'Kalimantan Timur',
+                           'Kalimantan Selatan', 'Sulawesi Selatan', 'Sulawesi Utara', 'Bali', 'NTB',
+                           'NTT', 'Maluku', 'Papua', 'Banten', 'Yogyakarta'],
+                'limbah_total': [2018500, 3102800, 2318400, 2532800, 1063400, 453600, 524700, 660300,
+                               564200, 336800, 284500, 623500, 204300, 425100, 336400, 310200, 168500,
+                               322100, 1104800, 310400],
+                'emisi_co2e': [1009250, 1551400, 1159200, 1266400, 531700, 226800, 262350, 330150,
+                              282100, 168400, 142250, 311750, 102150, 212550, 168200, 155100, 84250,
+                              161050, 552400, 155200],
+                'populasi': [11.1, 49.4, 37.0, 41.4, 15.6, 5.8, 7.1, 8.8, 9.3, 4.1, 4.5, 9.4, 2.9, 4.6, 5.6,
+                           5.7, 2.0, 4.6, 12.8, 3.9]
+            }
+        };
+
+        let currentYear = 2024;
+        let wasteChart, clusterChart, trendChart, emissionChart;
+
+        // Climate data
+        const climateData = {
+            sectors: ['Rumah Tangga', 'Restoran/Hotel', 'Industri Makanan', 'Retail Modern', 'Pasar Tradisional'],
+            emissions: [24.02, 9.24, 12.94, 6.16, 3.08], // in million tons CO2e
+            colors: ['#ff6b6b', '#ffa726', '#4ecdc4', '#45b7d1', '#96ceb4']
+        };
+
+        // Advanced waste prediction model
+        function calculateAdvancedPrediction(populasi, urbanisasi, restoran, kesejahteraan, tahun) {
+            // Base waste per capita (kg/year) based on development level
+            const baseWastePerCapita = 45 + (kesejahteraan * 8) + (urbanisasi * 0.3);
+            
+            // Restaurant/hotel factor
+            const servicesFactor = 1 + (restoran / (populasi * 1000000)) * 50;
+            
+            // Year projection factor (assuming 2.5% annual growth)
+            const yearDiff = tahun - 2024;
+            const growthFactor = Math.pow(1.025, yearDiff);
+            
+            // Climate change impact factor (increasing waste due to supply chain disruption)
+            const climateFactor = 1 + (yearDiff * 0.015);
+            
+            const totalWastePerCapita = baseWastePerCapita * servicesFactor * growthFactor * climateFactor;
+            const totalWaste = (populasi * 1000000 * totalWastePerCapita) / 1000; // in tons
+            
+            // CO2 equivalent calculation (0.5 tons CO2e per ton of food waste)
+            const co2Equivalent = totalWaste * 0.5;
+            
+            // Economic loss (Rp 27,000 per kg)
+            const economicLoss = totalWaste * 1000 * 27000; // in Rupiah
+            
+            return {
+                totalWaste: Math.round(totalWaste),
+                wastePerCapita: Math.round(totalWastePerCapita * 10) / 10,
+                co2Equivalent: Math.round(co2Equivalent),
+                economicLoss: economicLoss,
+                breakdown: {
+                    household: Math.round(totalWaste * 0.52),
+                    restaurant: Math.round(totalWaste * 0.23),
+                    retail: Math.round(totalWaste * 0.15),
+                    industry: Math.round(totalWaste * 0.10)
+                }
+            };
+        }
+
+        // Initialize particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+            },
+            retina_detect: true
+        });
+
+        // Initialize charts
+        function initCharts() {
+            initTrendChart();
+            initWasteChart();
+            initClusterChart();
+            initEmissionChart();
+        }
+
+        function initTrendChart() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            const years = [2022, 2023, 2024];
+            const totalWasteByYear = years.map(year => {
+                return wasteDataByYear[year].limbah_total.reduce((sum, val) => sum + val, 0) / 1000000;
+            });
+
+            trendChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Total Limbah Makanan (Juta Ton)',
+                        data: totalWasteByYear,
+                        borderColor: '#ff6b6b',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#ff6b6b',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: 'white' } }
+                    },
+                    scales: {
+                        y: { 
+                            ticks: { color: 'white' }, 
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            title: { display: true, text: 'Juta Ton/Tahun', color: 'white' }
+                        },
+                        x: { ticks: { color: 'white' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                    }
+                }
+            });
+        }
+
+        function initWasteChart() {
+            const ctx = document.getElementById('wasteChart').getContext('2d');
+            const currentData = wasteDataByYear[currentYear];
+            
+            wasteChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: currentData.provinsi,
+                    datasets: [{
+                        label: 'Limbah Makanan (Ribu Ton)',
+                        data: currentData.limbah_total.map(val => val / 1000),
+                        backgroundColor: 'rgba(78, 205, 196, 0.8)',
+                        borderColor: 'rgba(78, 205, 196, 1)',
+                        borderWidth: 2,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: 'white' } }
+                    },
+                    scales: {
+                        y: { 
+                            ticks: { color: 'white' }, 
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            title: { display: true, text: 'Ribu Ton/Tahun', color: 'white' }
+                        },
+                        x: { ticks: { color: 'white', maxRotation: 45 }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                    }
+                }
+            });
+        }
+
+        function initClusterChart() {
+            const ctx = document.getElementById('clusterChart').getContext('2d');
+            const currentData = wasteDataByYear[currentYear];
+            
+            const scatterData = currentData.limbah_total.map((waste, i) => ({
+                x: waste / 1000000, // Convert to millions
+                y: (waste / (currentData.populasi[i] * 1000000)) * 1000 // kg per capita
+            }));
+
+            clusterChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Provinsi',
+                        data: scatterData,
+                        backgroundColor: 'rgba(255, 107, 107, 0.8)',
+                        borderColor: 'rgba(255, 107, 107, 1)',
+                        borderWidth: 2,
+                        pointRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: 'white' } }
+                    },
+                    scales: {
+                        y: { 
+                            title: { display: true, text: 'Limbah per Kapita (kg/tahun)', color: 'white' },
+                            ticks: { color: 'white' }, 
+                            grid: { color: 'rgba(255,255,255,0.1)' } 
+                        },
+                        x: { 
+                            title: { display: true, text: 'Total Limbah (juta ton/tahun)', color: 'white' },
+                            ticks: { color: 'white' }, 
+                            grid: { color: 'rgba(255,255,255,0.1)' } 
+                        }
+                    }
+                }
+            });
+        }
+
+        function initEmissionChart() {
+            const ctx = document.getElementById('emissionChart').getContext('2d');
+            
+            emissionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: climateData.sectors,
+                    datasets: [{
+                        data: climateData.emissions,
+                        backgroundColor: climateData.colors,
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { 
+                            labels: { color: 'white' },
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        // Enhanced clustering with 2024 data
+        function performAdvancedClustering() {
+            const clusters = {
+                0: {
+                    name: 'Megapolitan Extreme Waste',
+                    provinces: ['DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Jawa Timur', 'Banten'],
+                    characteristics: 'Megapolitan dengan limbah makanan ekstrem (>1.5 juta ton/tahun)',
+                    avgWaste: 2415320,
+                    avgEmission: 1207660,
+                    priority: 'KRITIS',
+                    color: '#ff3838',
+                    actions: [
+                        'Implementasi sistem AI untuk prediksi demand makanan',
+                        'Mandatory food waste audit untuk semua restoran/hotel',
+                        'Pembangunan 50 fasilitas biogas industrial',
+                        'Program food rescue terintegrasi dengan aplikasi nasional',
+                        'Carbon tax untuk food waste di atas threshold'
+                    ],
+                    target2030: '40% reduction'
+                },
+                1: {
+                    name: 'Urban High-Impact',
+                    provinces: ['Sumatera Utara', 'Sulawesi Selatan', 'Bali'],
+                    characteristics: 'Daerah urban dengan dampak tinggi terhadap iklim',
+                    avgWaste: 697600,
+                    avgEmission: 348800,
+                    priority: 'SANGAT TINGGI',
+                    color: '#ff6b6b',
+                    actions: [
+                        'Smart waste monitoring dengan sensor IoT',
+                        'Program edukasi climate-food nexus',
+                        'Pengembangan composting komunal 4.0',
+                        'Kemitraan dengan sektor pariwisata (Bali)',
+                        'Biogas mini plant di setiap kecamatan'
+                    ],
+                    target2030: '35% reduction'
+                },
+                2: {
+                    name: 'Regional Standard-Growth',
+                    provinces: ['Sumatera Barat', 'Riau', 'Sumatera Selatan', 'Lampung', 'NTB', 'Yogyakarta'],
+                    characteristics: 'Daerah regional dengan pertumbuhan standar',
+                    avgWaste: 431017,
+                    avgEmission: 215508,
+                    priority: 'TINGGI',
+                    color: '#ffa726',
+                    actions: [
+                        'Program food recovery berbasis komunitas',
+                        'Teknologi pengawetan makanan tradisional',
+                        'Marketplace surplus makanan regional',
+                        'Training UMKM untuk circular food economy',
+                        'Pengembangan food bank daerah'
+                    ],
+                    target2030: '30% reduction'
+                },
+                3: {
+                    name: 'Emerging Low-Density',
+                    provinces: ['Kalimantan Timur', 'Kalimantan Selatan', 'Sulawesi Utara', 'NTT', 'Maluku', 'Papua'],
+                    characteristics: 'Daerah berkembang dengan kepadatan rendah',
+                    avgWaste: 272567,
+                    avgEmission: 136283,
+                    priority: 'SEDANG',
+                    color: '#4ecdc4',
+                    actions: [
+                        'Program composting berbasis kelompok tani',
+                        'Teknologi pengolahan limbah sederhana',
+                        'Edukasi food waste awareness',
+                        'Pengembangan value chain lokal',
+                        'Pemanfaatan limbah untuk pakan ternak'
+                    ],
+                    target2030: '25% reduction'
+                }
+            };
+
+            return clusters;
+        }
+
+        function generateAdvancedClusterCards() {
+            const clusters = performAdvancedClustering();
+            const container = document.getElementById('clusterGrid');
+            container.innerHTML = '';
+            
+            Object.values(clusters).forEach(cluster => {
+                const card = document.createElement('div');
+                card.className = 'cluster-card';
+                card.innerHTML = `
+                    <div class="cluster-title" style="color: ${cluster.color}">
+                        🎯 ${cluster.name}
+                    </div>
+                    <div class="province-list">
+                        <strong>Provinsi (${cluster.provinces.length}):</strong><br>
+                        ${cluster.provinces.join(', ')}
+                    </div>
+                    <p><strong>Karakteristik:</strong> ${cluster.characteristics}</p>
+                    <p><strong>Rata-rata Limbah:</strong> ${(cluster.avgWaste / 1000).toFixed(0)} ribu ton/tahun</p>
+                    <p><strong>Emisi GRK:</strong> ${(cluster.avgEmission / 1000).toFixed(0)} ribu ton CO2e/tahun</p>
+                    <p><strong>Prioritas:</strong> <span style="color: ${cluster.color}">${cluster.priority}</span></p>
+                    <p><strong>Target 2030:</strong> <span style="color: #4caf50">${cluster.target2030}</span></p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function generateAdvancedRecommendations() {
+            const clusters = performAdvancedClustering();
+            const container = document.getElementById('recommendationsContainer');
+            container.innerHTML = '';
+            
+            Object.values(clusters).forEach(cluster => {
+                const priorityClass = cluster.priority === 'KRITIS' ? 'priority-high' : 
+                                   cluster.priority.includes('TINGGI') ? 'priority-medium' : 'priority-low';
+                
+                const card = document.createElement('div');
+                card.className = `rec-card ${priorityClass}`;
+                card.innerHTML = `
+                    <h3>🎯 ${cluster.name}</h3>
+                    <p><strong>Provinsi:</strong> ${cluster.provinces.join(', ')}</p>
+                    <p><strong>Dampak Iklim:</strong> ${(cluster.avgEmission / 1000).toFixed(0)} ribu ton CO2e/tahun</p>
+                    <h4>🚀 Aksi Strategis:</h4>
+                    <ul class="rec-list">
+                        ${cluster.actions.map(action => `<li>${action}</li>`).join('')}
+                    </ul>
+                    <div class="insight-box">
+                        <strong>💰 ROI Proyeksi:</strong> Setiap Rp 1 investasi → Rp 3.5 penghematan ekonomi + manfaat lingkungan<br>
+                        <strong>🌱 Target:</strong> ${cluster.target2030} pengurangan limbah makanan hingga 2030
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function switchYear(year) {
+            currentYear = year;
+            
+            // Update active button
+            document.querySelectorAll('.year-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update statistics
+            updateStatistics();
+            
+            // Update charts
+            if (wasteChart) {
+                wasteChart.destroy();
+                initWasteChart();
+            }
+            if (clusterChart) {
+                clusterChart.destroy();
+                initClusterChart();
+            }
+        }
+
+        function updateStatistics() {
+            const data = wasteDataByYear[currentYear];
+            const totalWaste = data.limbah_total.reduce((sum, val) => sum + val, 0);
+            const totalPopulation = data.populasi.reduce((sum, val) => sum + val, 0);
+            const avgPerCapita = (totalWaste / (totalPopulation * 1000000)) * 1000; // kg per capita
+            
+            document.getElementById('totalWaste').textContent = 
+                (totalWaste / 1000000).toFixed(1) + 'M';
+            document.getElementById('avgPerCapita').textContent = 
+                avgPerCapita.toFixed(1);
+            document.getElementById('totalPopulation').textContent = 
+                totalPopulation.toFixed(1) + 'M';
+            
+            // Calculate economic loss (Rp 27,000 per kg)
+            const economicLoss = totalWaste * 1000 * 27000 / 1000000000000; // in trillion rupiah
+            document.getElementById('economicLoss').textContent = 
+                'Rp ' + economicLoss.toFixed(0) + 'T';
+        }
+
+        function predictWasteAdvanced() {
+            const populasi = parseFloat(document.getElementById('populasiInput').value);
+            const urbanisasi = parseFloat(document.getElementById('urbanisasiInput').value);
+            const restoran = parseInt(document.getElementById('restoranInput').value);
+            const kesejahteraan = parseFloat(document.getElementById('kesejahteraanInput').value);
+            const tahun = parseInt(document.getElementById('tahunPrediksi').value);
+            
+            if (!populasi || !urbanisasi || !restoran || !kesejahteraan) {
+                alert('Mohon lengkapi semua input!');
+                return;
+            }
+            
+            // Show loading
+            const resultDiv = document.getElementById('predictionResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<div class="loading"></div><p>Menghitung prediksi dengan AI...</p>';
+            
+            setTimeout(() => {
+                const prediction = calculateAdvancedPrediction(populasi, urbanisasi, restoran, kesejahteraan, tahun);
+                
+                resultDiv.innerHTML = `
+                    <h3>🤖 Hasil Prediksi AI - Tahun ${tahun}</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                            <strong>Total Limbah</strong><br>
+                            <span style="font-size: 1.5rem; color: #ff6b6b;">${prediction.totalWaste.toLocaleString()}</span><br>
+                            <small>ton/tahun</small>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                            <strong>Per Kapita</strong><br>
+                            <span style="font-size: 1.5rem; color: #ffa726;">${prediction.wastePerCapita}</span><br>
+                            <small>kg/tahun</small>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                            <strong>Emisi GRK</strong><br>
+                            <span style="font-size: 1.5rem; color: #ff6b6b;">${prediction.co2Equivalent.toLocaleString()}</span><br>
+                            <small>ton CO2e</small>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                            <strong>Kerugian Ekonomi</strong><br>
+                            <span style="font-size: 1.5rem; color: #ff6b6b;">Rp ${(prediction.economicLoss/1000000000).toFixed(1)}M</span><br>
+                            <small>per tahun</small>
+                        </div>
+                    </div>
+                    
+                    <h4>📊 Breakdown per Sektor:</h4>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                        🏠 Rumah Tangga: <strong>${prediction.breakdown.household.toLocaleString()} ton</strong> (52%)<br>
+                        🍽️ Restoran/Hotel: <strong>${prediction.breakdown.restaurant.toLocaleString()} ton</strong> (23%)<br>
+                        🏪 Retail: <strong>${prediction.breakdown.retail.toLocaleString()} ton</strong> (15%)<br>
+                        🏭 Industri: <strong>${prediction.breakdown.industry.toLocaleString()} ton</strong> (10%)
+                    </div>
+                    
+                    <div style="background: rgba(255, 167, 38, 0.2); padding: 1rem; border-radius: 10px; border-left: 4px solid #ffa726;">
+                        <h4>⚠️ Dampak Perubahan Iklim</h4>
+                        <p>Emisi GRK setara dengan <strong>${Math.round(prediction.co2Equivalent/4.6)} mobil</strong> beroperasi selama 1 tahun. 
+                        Jika tidak ada intervensi, dampak akan meningkat <strong>1.5% per tahun</strong> akibat perubahan iklim.</p>
+                    </div>
+                    
+                    <div style="background: rgba(76, 175, 80, 0.2); padding: 1rem; border-radius: 10px; border-left: 4px solid #4caf50;">
+                        <h4>💡 Rekomendasi Mitigasi</h4>
+                        <p>Implementasi composting + biogas dapat mengurangi <strong>68% emisi</strong> dan menghemat 
+                        <strong>Rp ${(prediction.economicLoss*0.6/1000000000).toFixed(1)}M</strong> per tahun.</p>
+                    </div>
+                `;
+            }, 2000);
+        }
+
+        function startAnalysis() {
+            document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Province auto-fill
+        document.getElementById('provinsiSelect').addEventListener('change', function() {
+            const provinsiData = {
+                'jakarta': { populasi: 11.1, urbanisasi: 100, restoran: 15000, kesejahteraan: 9 },
+                'jabar': { populasi: 49.4, urbanisasi: 67, restoran: 8500, kesejahteraan: 7 },
+                'jateng': { populasi: 37.0, urbanisasi: 54, restoran: 5200, kesejahteraan: 6 },
+                'jatim': { populasi: 41.4, urbanisasi: 58, restoran: 6800, kesejahteraan: 7 },
+                'sumut': { populasi: 15.6, urbanisasi: 61, restoran: 3200, kesejahteraan: 6 }
+            };
+            
+            const selected = this.value;
+            if (provinsiData[selected]) {
+                document.getElementById('populasiInput').value = provinsiData[selected].populasi;
+                document.getElementById('urbanisasiInput').value = provinsiData[selected].urbanisasi;
+                document.getElementById('restoranInput').value = provinsiData[selected].restoran;
+                document.getElementById('kesejahteraanInput').value = provinsiData[selected].kesejahteraan;
+            }
+        });
+
+        // Initialize everything when page loads
+        window.addEventListener('load', function() {
+            updateStatistics();
+            initCharts();
+            generateAdvancedClusterCards();
+            generateAdvancedRecommendations();
+        });
+    </script>
+</body>
+</html>
