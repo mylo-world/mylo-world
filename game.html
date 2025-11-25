@@ -1,0 +1,135 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hangman Gambit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hangman Gambit</h1>
+      <p>The word is: {{ game.display_word }}</p>
+      <form method="POST" action="{{ url_for('guess') }}">
+        <input type="text" name="letter" maxlength="1" required>
+        <button type="submit">Guess</button>
+      </form>
+      <p>Guesses: {{ game.guesses }}</p>
+    </div>
+  </body>
+</html> -->
+
+
+<!-- /your_project
+├── app.py
+├── static
+│   ├── Assets
+│   ├── Fonts
+│   └── (other static files)
+├── templates
+│   ├── start_menu.html
+│   ├── user_login.html
+│   ├── leaderboard.html
+│   ├── select_category.html
+│   ├── level_selection.html
+│   ├── main_game.html
+│   ├── win.html
+│   └── lose.html
+└── scores.txt
+
+
+### <app class="py"></app> -->
+
+<!-- from flask import Flask, render_template, request, redirect, url_for, session
+import os
+import random
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Change this to a random secret key
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+def load_scores(file_path="scores.txt"):
+    player_scores = {}
+    try:
+        with open(file_path, "r") as file:
+            for line in file:
+                name, score = line.strip().split(":")
+                player_scores[name] = int(score)
+    except FileNotFoundError:
+        player_scores = {}
+    return player_scores
+
+def save_scores(player_scores, file_path="scores.txt"):
+    with open(file_path, "w") as file:
+        for name, score in player_scores.items():
+            file.write(f"{name}:{score}\n")
+
+player_scores = load_scores()
+
+@app.route('/')
+def start_menu():
+    return render_template('startmenu.html')
+
+@app.route('/login', methods=['POST'])
+def user_login():
+    username = request.form.get('username')
+    if username:
+        session['username'] = username
+        if username not in player_scores:
+            player_scores[username] = 0  # Initialize score
+            save_scores(player_scores)  # Save new user to file
+        return redirect(url_for('select_category'))
+    return redirect(url_for('start_menu'))
+
+@app.route('/leaderboard')
+def leaderboard():
+    sorted_scores = sorted(player_scores.items(), key=lambda x: x[1], reverse=True)[:5]
+    return render_template('leaderboard.html', scores=sorted_scores)
+
+@app.route('/select_category')
+def select_category():
+    return render_template('select_category.html')
+
+@app.route('/level_selection/<category>')
+def level_selection(category):
+    return render_template('level_selection.html', category=category)
+
+@app.route('/main_game/<category>/<level>')
+def main_game(category, level):
+    # Load definitions and choose a random word
+    return render_template('main_game.html', category=category, level=level)
+
+@app.route('/win')
+def win():
+    return render_template('win.html')
+
+@app.route('/lose')
+def lose():
+    return render_template('lose.html')
+
+if __name__ == '__main__':
+    app.run(debug=True) -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman's Gambit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Hangman's Gambit</h1>
+    <form action="{{ url_for('user_login') }}" method="post">
+        <input type="text" name="username" placeholder="Enter Your Name" required>
+        <button type="submit">Log In</button>
+    </form>
+    <a href="{{ url_for('leaderboard') }}">View Leaderboard</a>
+</body>
+</html>

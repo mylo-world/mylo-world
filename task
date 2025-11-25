@@ -1,0 +1,83 @@
+from datetime import datetime
+
+def calculate_age(birthdate):
+    today = datetime.today()
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    return age
+
+def recommend_coffee(age, gender, time_of_day):
+    gender = gender.lower()
+    time_of_day = time_of_day.lower()
+
+    # Coffee preferences
+    if 15 < age <= 18:
+        if gender == 'male':
+            coffee = "Latte"
+        elif gender == 'female':
+            coffee = "Caramel Macchiato"
+    elif 19 <= age <= 22:
+        if gender == 'male':
+            coffee = "Espresso"
+        elif gender == 'female':
+            coffee = "Butterscotch"
+    elif 23 <= age <= 25:
+        if gender == 'male':
+            coffee = "Arabica"
+        elif gender == 'female':
+            coffee = "Mocha"
+    else:
+        coffee = "Ice tea"
+    
+        # based on time of the day
+    if time_of_day in [ 'morning']:
+        coffee = " to kickstart your day with energy!"
+    elif time_of_day in [ 'afternoon']:
+        coffee = " as a perfect afternoon pick-me-up!"
+    elif time_of_day in [ 'evening']:
+        coffee = ", a soothing treat to end your day on a cozy note."
+    return coffee
+
+# validate user input for gender
+def validate_gender(gender_input):
+    valid_genders = ['male', 'female']
+    while gender_input.lower() not in valid_genders:
+        print("Input doesnt valid. Enter 'male' atau 'female'.")
+        gender_input = input("Enter your your gender (male/female): ")
+    return gender_input
+
+# user input for time of day
+def validate_time_of_day(time_input):
+    valid_times = ['morning', 'afternoon', 'evening']
+    while time_input.lower() not in valid_times:
+        print("Input doesnt valid. Enter 'morning', 'afternoon', or 'evening'.")
+        time_input = input("When would you like some coffee? (morning/afternoon/evening): ")
+    return time_input
+
+
+def main():
+    print ("Hello, welcome to our cafe! Please enter your short self identity below here")
+    # Input tanggal lahir
+    birthdate_str = input("Enter your date of birth (format YYYY-MM-DD): ")
+    birthdate = datetime.strptime(birthdate_str, "%Y-%m-%d")
+
+    # Input jenis kelamin
+    gender = input("Enter your gender (male/female): ")
+
+    time_of_day = input("When would you like some coffee? (morning/afternoon/evening): ")
+    time_of_day = validate_time_of_day(time_of_day) 
+
+    # Hitung usia
+    age = calculate_age(birthdate)
+
+    # Dapatkan rekomendasi kopi
+    coffee_recommendation = recommend_coffee(age, gender, time_of_day)
+
+    # Output hasil
+    print("\n=== Rekomendasi Anda ===")
+    print(f"Your age: {age} years")
+    print(f"Coffee recommendation for you: {coffee_recommendation}")
+    print("=========================")
+
+
+if __name__ == "__main__":
+    main()

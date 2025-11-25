@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Arcade';
+  src: url('../fonts/KarmaticArcade-6Yrp1.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rocabe';
+  src: url('../fonts/RocabeTrialRegular-OGMep.ttf') format('truetype');
+}
+
+/* Add styles for the background and other elements here */
+body {
+  background-color: #12022b;
+  font-family: 'Arcade', sans-serif;
+}
+
+.container {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.title {
+  font-size: 75px;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.button {
+  width: 175px;
+  height: 75px;
+  font-size: 20px;
+  color: white;
+  background-color: #12022b;
+  border: none;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+.button:hover {
+  background-color: #333;
+}

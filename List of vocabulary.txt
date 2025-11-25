@@ -1,0 +1,96 @@
+List of vocabulary
+# Academic Terms
+thesis: A statement or theory put forward to be maintained or proved.
+paradigm: A typical example or pattern of something; a model.
+synthesis: The combination of ideas to form a theory or system.
+methodology: A system of methods used in a particular area of study or activity.
+epistemology: The theory of knowledge, especially with regard to its methods, validity, and scope.
+pedagogy: The method and practice of teaching, especially as an academic subject or theoretical concept.
+dissertation: A long essay on a particular subject, especially one written for a university degree or diploma.
+hypothesis: A proposed explanation made based on limited evidence as a starting point for further investigation.
+lexicon: The vocabulary of a person, language, or branch of knowledge.
+colloquium: An academic conference or seminar.
+
+# Research and Study
+citation: A reference to a published or unpublished source.
+abstract: A summary of a research article, thesis, review, or other scientific document.
+empirical: Based on observation or experience rather than theory or pure logic.
+qualitative: Relating to, measuring, or measured by the quality of something rather than its quantity.
+quantitative: Relating to, measuring, or measured by the quantity of something rather than its quality.
+bibliography: A list of the books referred to in a scholarly work.
+data analysis: The process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information.
+literature review: A survey of scholarly sources on a specific topic.
+longitudinal study: Research that involves repeated observations of the same variables over long periods of time.
+variable: An element, feature, or factor that is liable to vary or change.
+
+# Tech and Computer Science
+algorithm: A process or set of rules to be followed in calculations or other problem-solving operations.
+cybersecurity: The practice of protecting systems, networks, and programs from digital attacks.
+database: An organized collection of structured information or data, typically stored electronically in a computer system.
+encryption: The process of converting information or data into a code to prevent unauthorized access.
+interface: A point where two systems, subjects, organizations, etc., meet and interact.
+machine learning: A type of artificial intelligence that allows software applications to become more accurate at predicting outcomes.
+network: A group of two or more computer systems linked together.
+open source: Software for which the original source code is made freely available and may be redistributed and modified.
+compiler: A program that translates code written in a high-level programming language into machine code that can be executed by a computer's CPU.
+artificial intelligence: The simulation of human intelligence processes by machines, especially computer systems.
+
+# Natural Science
+isotope: Variants of a particular chemical element that differ in neutron number, and consequently in nucleon number.
+photosynthesis: The process by which green plants and some other organisms use sunlight to synthesize foods with the help of chlorophyll.
+ecosystem: A biological community of interacting organisms and their physical environment.
+kinetics: The study of the rates at which chemical processes occur.
+evolution: The process by which different kinds of living organisms are thought to have developed from earlier forms during the history of the earth.
+biodiversity: The variety of plant and animal life in the world or in a particular habitat.
+osmosis: The process of gradual or unconscious assimilation of ideas, knowledge, etc.
+geology: The science that deals with the earth's physical structure and substance.
+cell: The smallest structural and functional unit of an organism.
+microbiology: The branch of science that deals with microorganisms.
+
+# Humanities and Social Science
+anthropology: The study of human societies and cultures and their development.
+sociology: The study of the development, structure, and functioning of human society.
+semantics: The branch of linguistics and logic concerned with meaning.
+hermeneutics: The branch of knowledge that deals with interpretation, especially of the Bible or literary texts.
+dialectic: The art of investigating or discussing the truth of opinions.
+ethics: The branch of knowledge that deals with moral principles.
+philosophy: The study of the fundamental nature of knowledge, reality, and existence.
+linguistics: The scientific study of language and its structure.
+political science: The branch of knowledge that deals with systems of government and the analysis of political activity and behavior.
+socioeconomics: The study of the relationship between economic activity and social life.
+
+# Business and Economics
+market segmentation: The process of dividing a market of potential customers into groups, or segments, based on different characteristics.
+supply chain: The sequence of processes involved in the production and distribution of a commodity.
+fiscal policy: The use of government revenue collection and expenditure to influence the economy.
+capitalism: An economic system in which a country's trade and industry are controlled by private owners for profit, rather than by the state.
+innovation: The action or process of innovating; introducing new ideas, methods, or products.
+monopoly: The exclusive possession or control of the supply or trade in a commodity or service.
+inflation: A general increase in prices and fall in the purchasing value of money.
+entrepreneurship: The activity of setting up a business or businesses, taking on financial risks in the hope of profit.
+gross domestic product: The total value of goods produced and services provided in a country during one year.
+market analysis: The study of the attractiveness and the dynamics of a special market within a special industry.
+
+# Engineering
+circuit: A closed path through which an electric current flows or may flow.
+thermodynamics: The branch of physical science that deals with the relations between heat and other forms of energy.
+structural analysis: The determination of the effects of loads on physical structures and their components.
+robotics: The branch of technology that deals with the design, construction, operation, and application of robots.
+nanotechnology: The branch of technology that deals with dimensions and tolerances of less than 100 nanometers, especially the manipulation of individual atoms and molecules.
+mechanics: The branch of applied mathematics dealing with motion and forces producing motion.
+aerospace: The branch of technology and industry concerned with both aviation and space flight.
+biomaterials: Any matter, surface, or construct that interacts with biological systems.
+renewable energy: Energy from a source that is not depleted when used, such as wind or solar power.
+ergonomics: The study of people's efficiency in their working environment.
+
+# Health and Medicine
+pathology: The science of the causes and effects of diseases.
+pharmacology: The branch of medicine concerned with the uses, effects, and modes of action of drugs.
+anatomy: The branch of science concerned with the bodily structure of humans, animals, and other living organisms.
+epidemiology: The branch of medicine which deals with the incidence, distribution, and control of diseases.
+immunology: The branch of medicine and biology concerned with immunity.
+genetics: The study of heredity and the variation of inherited characteristics.
+cardiology: The branch of medicine that deals with diseases and abnormalities of the heart.
+oncology: The study and treatment of tumors.
+psychiatry: The study and treatment of mental illness, emotional disturbance, and abnormal behavior.
+surgery: The branch of medical practice that treats injuries, deformities, or other disorders by manual operation or instrumental appliances.

@@ -1,0 +1,105 @@
+apple: A round fruit with red or yellow skin and a firm white flesh.
+university: An educational institution designed for instruction, examination, or both, of students in many branches of advanced learning.
+python: A high-level programming language designed to be easy to read and simple to implement.
+cat: A small domesticated carnivorous mammal with soft fur, a short snout, and retractile claws.
+college: An educational institution or establishment, in particular one providing higher education or specialized professional or vocational training.
+love: An intense feeling of deep affection.
+equality: The state of being equal, especially in status, rights, or opportunities.
+tuberculosis: An infectious bacterial disease characterized by the growth of nodules (tubercles) in the tissues, especially the lungs.
+mathematicians: People who study and specialize in mathematics.
+dog: A domesticated carnivorous mammal that typically has a long snout, an acute sense of smell, non-retractile claws, and a barking, howling, or whining voice.
+cathedral: The principal church of a diocese, with which the bishop is officially associated.
+google: A popular search engine.
+variable: A storage location in programming that holds data.
+function: A block of organized, reusable code used to perform a single action.
+loop: A sequence of instructions that is repeated until a certain condition is reached.
+debugging: The process of finding and fixing errors in computer programs.
+database: A collection of organized data that can be accessed and managed.
+frontend: The part of a website or application that users interact with.
+backend: The server-side part of a website or application that processes data and logic.
+API: Application Programming Interface, a set of rules for building and interacting with software applications.
+framework: A platform for developing software applications.
+HTML: Hypertext Markup Language, the standard language for creating web pages.
+CSS: Cascading Style Sheets, used for designing the layout of web pages.
+JavaScript: A programming language commonly used to create interactive effects within web browsers.
+library: A collection of pre-written code that can be used to simplify complex tasks.
+compiler: A program that converts source code into executable code.
+syntax: The set of rules that defines the combinations of symbols that are considered to be correctly structured programs in a language.
+object: A self-contained component that contains properties and methods needed to make a certain type of data useful.
+inheritance: A mechanism where a new class inherits the properties and behavior of another class.
+encapsulation: The bundling of data and methods that operate on the data within one unit, e.g., a class in Java.
+polymorphism: The provision of a single interface to entities of different types.
+abstraction: The concept of hiding the complex reality while exposing only the necessary parts.
+constructor: A special method used to initialize objects.
+destructor: A method that is invoked when an object is destroyed.
+interface: A group of related methods with empty bodies.
+module: A file containing Python code that can be imported into other Python programs.
+exception: An event that occurs during the execution of a program that disrupts the normal flow of instructions.
+iteration: The repetition of a process or set of instructions in a program.
+node: A fundamental part of a data structure, such as a linked list or tree data structure.
+link: A reference to another node in a data structure.
+binary: A system of numerical notation that has 2 rather than 10 as a base.
+hexadecimal: A base-16 number system used in mathematics and computing.
+bit: The smallest unit of data in a computer, representing a binary value of 0 or 1.
+byte: A group of eight bits, which is the standard chunk size for data.
+encryption: The process of converting data into a code to prevent unauthorized access.
+firewall: A network security system that monitors and controls incoming and outgoing network traffic.
+protocol: A set of rules governing the exchange or transmission of data between devices.
+router: A device that forwards data packets between computer networks.
+bandwidth: The maximum rate of data transfer across a given path.
+latency: The delay before a transfer of data begins following an instruction for its transfer.
+server: A computer program or device that provides functionality for other programs or devices, called clients.
+client: A computer or program that accesses a service made available by a server.
+cookie: A small piece of data sent from a website and stored on the user's computer by the user's web browser.
+cache: A hardware or software component that stores data so future requests for that data can be served faster.
+cloud: Internet-based computing where services like storage and applications are delivered to an organization's computers and devices through the Internet.
+AI: Artificial Intelligence, the simulation of human intelligence processes by machines.
+machine learning: A type of AI that allows software applications to become more accurate in predicting outcomes without being explicitly programmed.
+neural network: A computer system modeled on the human brain and nervous system.
+big data: Extremely large data sets that may be analyzed computationally to reveal patterns, trends, and associations.
+blockchain: A system in which a record of transactions made in bitcoin or another cryptocurrency is maintained across several computers that are linked in a peer-to-peer network.
+virtualization: The creation of a virtual (rather than actual) version of something, such as an operating system, a server, a storage device, or network resources.
+operating system: System software that manages computer hardware, software resources, and provides common services for computer programs.
+kernel: The core part of an operating system, managing system resources and the communication between hardware and software components.
+compiler: A program that translates code written in a high-level programming language into machine code that can be executed by a computer's CPU.
+interpreter: A program that directly executes instructions written in a programming language without requiring them to have been compiled into a machine language program.
+assembler: A program that translates assembly language into machine code.
+bytecode: A form of instruction set designed for efficient execution by a software interpreter.
+firmware: Permanent software programmed into a read-only memory.
+GUI: Graphical User Interface, a type of interface that allows users to interact with electronic devices using graphical icons and visual indicators.
+CLI: Command-Line Interface, a type of user interface that allows users to interact with the computer by typing commands into a terminal or console window.
+SDK: Software Development Kit, a collection of software development tools in one installable package.
+IDE: Integrated Development Environment, a software application that provides comprehensive facilities to computer programmers for software development.
+repository: A central location in which data is stored and managed.
+commit: Saving changes to the local repository in version control systems like Git.
+push: Uploading local repository content to a remote repository in version control systems like Git.
+pull: Fetching and merging changes on the remote server to your local working directory in version control systems like Git.
+fork: Creating a copy of a repository in version control systems like Git.
+branch: A lightweight movable pointer to a commit in version control systems like Git.
+merge: Combining changes from different branches in version control systems like Git.
+conflict: A situation in version control systems where different changes in the code cannot be automatically merged.
+rollback: Returning to a previous state in version control systems.
+hotfix: A quick fix to address an issue in a product without going through the normal development process.
+refactoring: The process of restructuring existing computer code without changing its external behavior.
+unit test: A type of software testing where individual units or components of a software are tested.
+integration test: A type of software testing where individual units are combined and tested as a group.
+regression test: A type of software testing to confirm that a recent program or code change has not adversely affected existing features.
+QA: Quality Assurance, ensuring that a product or service meets specified requirements.
+CI/CD: Continuous Integration/Continuous Deployment, a method to frequently deliver apps to customers by introducing automation into the stages of app development.
+DevOps: A set of practices that combines software development (Dev) and IT operations (Ops).
+microservices: An architectural style that structures an application as a collection of loosely coupled services.
+containerization: The process of packaging software code and all its dependencies so it can run consistently across different computing environments.
+docker: A platform that allows developers to automate the deployment of applications inside lightweight, portable containers.
+kubernetes: An open-source system for automating the deployment, scaling, and management of containerized applications.
+orchestration: The automated configuration, management, and coordination of computer systems, applications, and services.
+elasticity: The ability of a system to automatically adjust capacity to handle variable amounts of traffic.
+scalability: The capability of a system, network, or process to handle a growing amount of work.
+load balancing: The process of distributing network traffic across multiple servers to ensure no single server becomes overwhelmed.
+serverless: A cloud-computing model that allows developers to build and run applications without having to manage servers.
+PaaS: Platform as a Service, a cloud-computing service that provides a platform allowing customers to develop, run, and manage applications.
+IaaS: Infrastructure as a Service, a cloud-computing service that provides virtualized computing resources over the internet.
+SaaS: Software as a Service, a software distribution model in which applications are hosted by a service provider and made available to customers over the internet.
+endpoint: A specific URL where a specific piece of software can be accessed.
+API gateway: A server that acts as an API front-end, receiving API requests, enforcing throttling and security policies, passing requests to the back-end service, and then passing the response back to the requester.
+rate limiting: The control of the rate at which an API or service is accessed.
+JSON: JavaScript Object Notation, a lightweight data interchange format that is easy for humans to read and write and easy for machines to
